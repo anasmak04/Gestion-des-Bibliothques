@@ -1,9 +1,10 @@
 <?php
 
-use models\User;
+namespace App\controllers;
 
-require_once "../../database/DbConfig.php";
-require_once "../../models/User.php";
+use App\database\DbConfig;
+
+require_once __DIR__ . '/../../../vendor/autoload.php';
 
 class RegisterController
 {

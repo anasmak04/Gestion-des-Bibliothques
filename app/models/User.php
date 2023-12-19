@@ -1,8 +1,7 @@
 <?php
 
-namespace models;
+namespace App\models;
 
-use DbConfig;
 
 
 class User{

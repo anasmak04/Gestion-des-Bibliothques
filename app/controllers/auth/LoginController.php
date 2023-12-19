@@ -1,6 +1,10 @@
 <?php
 
-require_once "../../database/DbConfig.php";
+namespace App\controllers;
+require_once __DIR__ . '/../../../vendor/autoload.php';
+
+use App\database\DbConfig;
+
 session_start();
 
 class LoginController

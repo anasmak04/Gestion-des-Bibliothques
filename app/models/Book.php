@@ -1,6 +1,6 @@
 <?php
 
-namespace models;
+namespace App\models;
 
 class Book
 {
@@ -22,7 +22,6 @@ class Book
      * @param $total_copies
      * @param $available_copies
      */
-    
     public function __construct($title, $author, $genre, $description, $publication_year, $total_copies, $available_copies)
     {
         $this->title = $title;

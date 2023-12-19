@@ -1,15 +1,13 @@
 <?php
 
-namespace Book;
+namespace App\controllers;
+require_once __DIR__ . '/../../../vendor/autoload.php';
 
-use dao\DaoInterface;
-use DbConfig;
-use models\Book;
-use models\User;
+use App\dao\DaoInterface;
+use App\database\DbConfig;
+use App\models\Book;
 
-require_once "../../dao/DaoInterface.php";
-require_once "../../models/Book.php";
-require_once "../../database/DbConfig.php";
+
 class BookController implements DaoInterface
 {
 
@@ -29,26 +27,30 @@ class BookController implements DaoInterface
     public function save($Book)
     {
 
-     $sql = ("INSERT INTO `book`(`title`, `author`, `genre`, `description`, `publication_year`, `total_copies`, `available_copies`) VALUES (:title,:author,:genre,:description,:publication_year,:total_copies,:available_copies)");
+     try{
+         $sql = ("INSERT INTO `book`(`title`, `author`, `genre`, `description`, `publication_year`, `total_copies`, `available_copies`) VALUES (:title,:author,:genre,:description,:publication_year,:total_copies,:available_copies)");
 
-     $statement = $this->databasse->prepare($sql);
+         $statement = $this->databasse->prepare($sql);
 
-     $title = $Book->getTitle();
-     $author = $Book->getAuthor();
-     $genre = $Book->getGenre();
-     $description = $Book->getDescription();
-     $publication_year = $Book->getPublicationYear();
-     $total_copies = $Book->getTotalCopies();
-     $available_copies = $Book->getAvailableCopies();
+         $title = $Book->getTitle();
+         $author = $Book->getAuthor();
+         $genre = $Book->getGenre();
+         $description = $Book->getDescription();
+         $publication_year = $Book->getPublicationYear();
+         $total_copies = $Book->getTotalCopies();
+         $available_copies = $Book->getAvailableCopies();
 
-     $statement->bindParam(':title', $title);
-     $statement->bindParam(':author', $author);
-     $statement->bindParam(':genre', $genre);
-     $statement->bindParam(':description', $description);
-     $statement->bindParam(':publication_year', $publication_year);
-     $statement->bindParam(':total_copies', $total_copies);
-     $statement->bindParam(':available_copies', $available_copies);
-     $statement->execute();
+         $statement->bindParam(':title', $title);
+         $statement->bindParam(':author', $author);
+         $statement->bindParam(':genre', $genre);
+         $statement->bindParam(':description', $description);
+         $statement->bindParam(':publication_year', $publication_year);
+         $statement->bindParam(':total_copies', $total_copies);
+         $statement->bindParam(':available_copies', $available_copies);
+         $statement->execute();
+     }catch(\PDOException $e){
+         echo $e->getMessage();
+     }
 
     }
 
@@ -64,7 +66,16 @@ class BookController implements DaoInterface
 
     public function findAll()
     {
-        // TODO: Implement findAll() method.
+        try {
+            $sql = "SELECT * FROM `book`";
+            $statement = $this->databasse->prepare($sql);
+            $statement->execute();
+            $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
+            return $result;
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+            return [];
+        }
     }
 
     public function deleteById($id)
@@ -86,3 +97,5 @@ if(isset($_POST['submit'])) {
     $bookimp = new BookController();
     $bookimp->save($user);
 }
+
+
