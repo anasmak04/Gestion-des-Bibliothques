@@ -15,7 +15,7 @@
 </head>
 
 <body>
-<h2>Login</h2>
+<h2>Books Management</h2>
 
 <form action="../../app/controllers/Book/BookController.php" method="post">
 

@@ -5,6 +5,7 @@ namespace App\models;
 class Book
 {
 
+    private $id;
     private $title;
     private $author;
     private $genre;
@@ -22,8 +23,9 @@ class Book
      * @param $total_copies
      * @param $available_copies
      */
-    public function __construct($title, $author, $genre, $description, $publication_year, $total_copies, $available_copies)
+    public function __construct($id ,$title, $author, $genre, $description, $publication_year, $total_copies, $available_copies)
     {
+        $this->id = $id;
         $this->title = $title;
         $this->author = $author;
         $this->genre = $genre;
@@ -36,6 +38,23 @@ class Book
     /**
      * @return mixed
      */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return mixed
+     */
+
     public function getTitle()
     {
         return $this->title;

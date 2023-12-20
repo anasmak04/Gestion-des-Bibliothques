@@ -1,15 +1,32 @@
 <?php
 
+///
+/// require_once __DIR__ . '/../../vendor/autoload.php';
+
+//use App\controllers\BookController;
 use App\controllers\BookController;
 
 require_once "../../app/controllers/Book/BookController.php";
 
 $bookController = new BookController();
-$books = $bookController->findAll(); // Fetch all books
+$books = $bookController->findAll();
 
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Books Management">
+    <meta name="keywords" content="Library books">
+    <meta name="author" content="Anas Elmakhloufi">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books</title>
+    <link rel="stylesheet" href="../../public/css/styles.css">
+</head>
 
-<table>
+<body>
+
+<table id="customers">
     <tr>
         <th>id</th>
         <th>title</th>
@@ -19,6 +36,7 @@ $books = $bookController->findAll(); // Fetch all books
         <th>publication year</th>
         <th>total copies</th>
         <th>available copies</th>
+        <th>Actions</th>
     </tr>
     <?php foreach ($books as $book) : ?>
         <tr>
@@ -30,6 +48,13 @@ $books = $bookController->findAll(); // Fetch all books
             <td><?= $book["publication_year"]; ?></td>
             <td><?= $book["total_copies"]; ?></td>
             <td><?= $book["available_copies"]; ?></td>
+            <td>
+                <a href="delete.php?id=<?= $book["id"] ?>">delete</a>
+                <a href="edit.php?id=<?= $book["id"] ?>">edit</a>
+            </td>
         </tr>
     <?php endforeach; ?>
 </table>
+
+</body>
+</html>
