@@ -12,7 +12,6 @@ use Exception;
 class BookController implements DaoInterface
 {
 
-
         private $database;
 
     /**
@@ -170,4 +169,3 @@ if(isset($_POST['submit-edit'])) {
     }
 }
 
-    

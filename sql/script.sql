@@ -1,13 +1,13 @@
 drop table user;
 
 create table user (
-         id int primary key auto_increment,
-        name VARCHAR(50),
-        lastname VARCHAR(50), 
-        email VARCHAR(50),
-         password VARCHAR(250),
-        phone VARCHAR(50),
-         budget double
+    id int primary key auto_increment,
+    name VARCHAR(50),
+    lastname VARCHAR(50),
+    email VARCHAR(50),
+    password VARCHAR(250),
+    phone VARCHAR(50),
+    budget double
 );
 
 
@@ -35,8 +35,14 @@ create table book (
     publication_year DATE,
     total_copies int,
     available_copies int
-)
+);
 
-
-
-
+create table reservation (
+    id int primary key auto_increment,
+    description VARCHAR(50),
+    reservation_date date,
+    return_date date,
+    is_returned int,
+    id_book int,
+    foreign key (id_book) references book(id)
+);

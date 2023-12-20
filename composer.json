@@ -1,4 +1,16 @@
 {
+    "name": "youcode/library",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "anasmak04",
+            "email": "anasdev8@gmail.com"
+        }
+    ],
     "require": {
         "vlucas/phpdotenv": "^5.6"
     }

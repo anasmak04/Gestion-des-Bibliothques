@@ -2,7 +2,7 @@
 
 use App\controllers\BookController;
 
-require_once "../../app/controllers/Book/BookController.php";
+require_once "../../app/controllers/book/BookController.php";
 
 $id = null;
 

@@ -6,6 +6,8 @@ namespace App\models;
 
 class User{
 
+
+    private $id;
     private $name;
     private $lastname;
     private $email;
@@ -14,23 +16,40 @@ class User{
     private $phone;
     private $budget;
 
+
     /**
-     * @param $id
      * @param $name
      * @param $lastname
      * @param $email
      * @param $password
      * @param $phone
      * @param $budget
+     * @param $UserRole
      */
-    public function __construct($name, $lastname, $email, $password, $phone, $budget)
+    public function __construct($id,$name, $lastname, $email, $password, $phone, $budget)
     {
+        $this->id = $id;
         $this->name = $name;
         $this->lastname = $lastname;
         $this->email = $email;
         $this->password = $password;
         $this->phone = $phone;
         $this->budget = $budget;
+    }
+
+
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
 
@@ -131,7 +150,9 @@ class User{
         $this->budget = $budget;
     }
 
-
+    /**
+     * @return mixed
+     */
 
 
 }

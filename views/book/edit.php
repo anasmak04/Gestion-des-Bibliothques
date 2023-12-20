@@ -2,7 +2,7 @@
 use App\controllers\BookController;
 
 $id = null;
-require_once "../../app/controllers/Book/BookController.php";
+require_once "../../app/controllers/book/BookController.php";
 $getById = new BookController();
 
 if (isset($_GET["id"])) {
@@ -26,7 +26,7 @@ $result = $getById->findById($id);
 <body>
 <h2>Edit</h2>
 
-<form action="../../app/controllers/Book/BookController.php" method="post">
+<form action="../../app/controllers/book/BookController.php" method="post">
 
     <?php if ($result) : ?>
         <div class="form-group">

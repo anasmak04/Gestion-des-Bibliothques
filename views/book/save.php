@@ -17,7 +17,7 @@
 <body>
 <h2>Books Management</h2>
 
-<form action="../../app/controllers/Book/BookController.php" method="post">
+<form action="../../app/controllers/book/BookController.php" method="post">
 
     <div class="form-group">
         <label for="title">title:</label>
@@ -55,8 +55,8 @@
         <input name="available_copies" type="number" class="form-control"  id="available_copies" required>
     </div>
 
+    <button name="edit-submit" type="submit" class="btn btn-success">Register</button>
 
-    <button name="submit" type="submit" class="btn btn-success">Register</button>
 </form>
 </body>
 </html>
