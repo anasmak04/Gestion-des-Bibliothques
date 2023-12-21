@@ -39,7 +39,8 @@ class RegisterController
             if ($statement1) {
                 $statement1->bindParam(':id_user', $LastInsertedId);
                 $statement1->execute();
-                $path = "../../views/auth/Login.php";
+                $path = "../../../views/auth/Login.php";
+
                 header("Location:".$path);
                 exit();
             } else {

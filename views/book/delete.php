@@ -13,5 +13,7 @@ if (isset($_GET["id"])) {
 $deletebook = new BookController();
 
 $deletebook->deleteById($id);
+header("Location: show.php");
+exit();
 
 ?>

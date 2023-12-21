@@ -40,7 +40,7 @@
 
     <div class="form-group">
         <label for="id_book">id_book:</label>
-        <input name="id_book" type="number" class="form-control"  id="id_book" required>
+        <input name="id_book" value="" type="number" class="form-control"  id="id_book" required>
     </div>
 
 

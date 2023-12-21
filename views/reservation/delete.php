@@ -10,5 +10,6 @@
 
     $reservationimp = new \App\reservation\ReservationController();
     $reservationimp->deleteById($id);
-
+    header("Location: show.php");
+    exit();
 ?>

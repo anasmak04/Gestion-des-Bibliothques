@@ -4,6 +4,7 @@ namespace App\controllers;
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 use App\database\DbConfig;
+use PDO;
 
 session_start();
 
@@ -31,7 +32,7 @@ class LoginController
 
             if (password_verify($password, $currentpwd)) {
                 if ($_SESSION["role"] == 2) {
-                    $path = "../../../views/auth/user/user.php";
+                    $path = "../../../views/book/show.php";
                     header("Location: " . $path);
                     exit();
 

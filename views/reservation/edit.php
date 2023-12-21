@@ -34,7 +34,7 @@ $result =$reservationimp->findById($id);
 
     <?php if ($result) : ?>
 
-        <input name="description" type="hidden" value="<?= $id ?>" >
+        <input name="id" type="hidden" value="<?= $id ?>" >
 
 
         <div class="form-group">

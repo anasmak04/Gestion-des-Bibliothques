@@ -1,5 +1,12 @@
 <?php
 
+session_start();
+
+if($_SESSION["role"] !== 1){
+    $path = "../NotFound.php";
+    header("Location :".$path);
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -37,7 +37,7 @@ $result2 = $userimp2->findById2($id);
 
     <?php foreach ($result1 as $result11) : ?>
 
-        <input type="hidden" name="id" value="<?= $result11["id"] ?>" />
+        <input type="hidden" name="id" value="<?= $id ?>" />
 
 
         <div class="form-group">

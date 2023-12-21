@@ -88,6 +88,20 @@ class ReservationController implements DaoInterface
         }
     }
 
+
+    public function getTheMostReservation(){
+        try{
+            $sql = "SELECT b.title, COUNT(r.id) AS reservation_count FROM book b LEFT JOIN reservation r ON b.id = r.id_book GROUP BY b.title ORDER BY reservation_count DESC;";
+            $stmt = $this->database->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+            return $result;
+        }catch(\PDOException $e){
+            echo $e->getMessage();
+        }
+    }
+
+
     public function findAll()
     {
         try{

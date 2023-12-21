@@ -13,5 +13,7 @@ if (isset($_GET["id"])) {
 
 $deleteuser = new UserController();
 $deleteuser->deleteById($id);
+    header("Location: show.php");
+    exit();
 
 ?>

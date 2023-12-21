@@ -1,0 +1,115 @@
+h2 {
+    font-size: 24px;
+    text-align: center;
+    font-family: arial;
+    margin-bottom: 30px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: rgb(185 188 191 / 20%) 0px 0px 24px 5px;
+    border-radius: 5px;
+    font-family: arial;
+    thead {
+        th {
+            padding: 10px 16px;
+            text-align: left;
+            background-color: #f3f3f5;
+        }
+    }
+
+    tbody {
+        tr {
+            td {
+                padding: 10px 16px;
+                border-bottom: 1px solid #eee;
+            }
+
+            .action {
+                display: flex;
+
+                .button {
+                    margin-right: 10px;
+                    cursor: pointer;
+                    background-color: #f3f3f5;
+                    border: none;
+                    padding: 5px 10px;
+                    border-radius: 2px;
+
+                    &:last-child {
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
+    }
+    overflow: auto;
+
+    .res-head {
+        display: none;
+    }
+
+    @media screen and (max-width: 767px) {
+        background-color: transparent;
+        box-shadow: none;
+        thead {
+            display: none;
+        }
+
+        tbody {
+            tr {
+                display: flex;
+                flex-wrap: wrap;
+                margin-bottom: 10px;
+                background-color: #fff;
+                padding: 50px 10px 10px 10px;
+                position: relative;
+                background-color: #fff;
+                box-shadow: rgb(185 188 191 / 20%) 0px 0px 24px 5px;
+
+
+
+                td {
+                    display: flex;
+                    background-color: transparent;
+                    padding: 0;
+                    margin-bottom: 5px;
+                    margin-right: 16px;
+                    border: none;
+                    flex-wrap: wrap;
+
+                    .res-head {
+                        display: block;
+                        font-weight: 700;
+                        margin-right: 5px;
+                    }
+
+                    &:first-child {
+                        position: absolute;
+                        top: 10px;
+                        left: 10px;
+                    }
+                }
+
+                .action {
+                    position: absolute;
+                    top: 10px;
+                    right: 10px;
+                }
+            }
+            tr:hover {
+                background:green;
+            }
+        }
+    }
+}
+
+
+.search input{
+    padding: 8px 8px;
+}
+
+.search{
+    margin: 20px;
+}
