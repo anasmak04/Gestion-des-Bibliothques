@@ -26,27 +26,30 @@ class ReservationController implements DaoInterface
 
     public function save($Reservation)
     {
-       try{
-           $sql = "INSERT INTO `reservation`(`description`, `reservation_date`, `return_date`, `is_returned`, `id_book`) VALUES (:description,:reservation_date,:return_date,:is_returned,:id_book)";
-        $statement = $this->database->prepare($sql);
+        try {
 
-        $description = $Reservation->getDescription();
-        $reservation_date = $Reservation->getReservationDate();
-        $return_date = $Reservation->getReturnDate();
-        $is_returned = $Reservation->getIsReturned();
-        $id_book = $Reservation->getIdBook();
+            $sql = "INSERT INTO `reservation`(`description`, `reservation_date`, `return_date`, `is_returned`, `id_book`) VALUES (:description, :reservation_date, :return_date, :is_returned, :id_book)";
+            $statement = $this->database->prepare($sql);
+            $description = $Reservation->getDescription();
+            $return_date = $Reservation->getReturnDate();
+            $is_returned = $Reservation->getIsReturned();
+            $id_book = $Reservation->getIdBook();
+            $current_date = date('Y-m-d');
+            $statement->bindParam(':description', $description);
+            $statement->bindParam(':reservation_date', $current_date);
+            $statement->bindParam(':return_date', $return_date);
+            $statement->bindParam(':is_returned', $is_returned);
+            $statement->bindParam(':id_book', $id_book);
+            $statement->execute();
 
-        $statement->bindParam(':description', $description);
-        $statement->bindParam(':reservation_date', $reservation_date);
-        $statement->bindParam(':return_date', $return_date);
-        $statement->bindParam(':is_returned', $is_returned);
-        $statement->bindParam(':id_book', $id_book);
-        $statement->execute();
-       }catch (\Exception $e){
-           echo $e->getMessage();
+            $path = "../../views/reservation/show.php";
+            header("Location :".$path);
+
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
     }
 
-    }
 
     public function update($Reservation)
     {
@@ -100,7 +103,6 @@ class ReservationController implements DaoInterface
             echo $e->getMessage();
         }
     }
-
 
     public function findAll()
     {
@@ -159,17 +161,26 @@ if(isset($_POST["edit-submit"])){
 }
 
 
-if(isset($_POST["submit"])){
-    $reservation = new Reservation(null,null,null,null,null,null);
-
+if(isset($_POST["submit"])) {
+    $reservation = new Reservation(null, null, null, null, null, null);
     $reservation->setDescription($_POST["description"]);
-    $reservation->setReservationDate($_POST["reservation_date"]);
+    $reservation->setReservationDate(date('Y-m-d'));
     $reservation->setReturnDate($_POST["return_date"]);
     $reservation->setIsReturned($_POST["is_returned"]);
     $reservation->setIdBook($_POST["id_book"]);
     $reservationimp = new ReservationController();
 
-    $reservationimp->save($reservation);
+    try {
+        $reservationimp->save($reservation);
+        $path = "../../../views/reservation/show.php";
+        header("Location: " .$path);
+        exit;
+    } catch (\PDOException $e) {
+        echo "Error updating book: " . $e->getMessage();
+    } catch (Exception $e) {
+        echo "Error: " . $e->getMessage();
+    }
 }
+
 
 

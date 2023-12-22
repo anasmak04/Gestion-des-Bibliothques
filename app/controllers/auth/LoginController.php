@@ -37,7 +37,8 @@ class LoginController
                     exit();
 
                 } else {
-                    echo "admin";
+                    $path = "../../../views/book/show.php";
+                    header("Location: " . $path);
                 }
             }
         }

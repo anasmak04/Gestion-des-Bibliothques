@@ -28,6 +28,7 @@ class BookController implements DaoInterface
     {
 
      try{
+
          $sql = ("INSERT INTO `book`(`title`, `author`, `genre`, `description`, `publication_year`, `total_copies`, `available_copies`) VALUES (:title,:author,:genre,:description,:publication_year,:total_copies,:available_copies)");
 
          $statement = $this->database->prepare($sql);
