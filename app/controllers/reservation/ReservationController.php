@@ -11,7 +11,6 @@ use Exception;
 class ReservationController implements DaoInterface
 {
 
-
     private $database;
 
     /**
@@ -48,6 +47,18 @@ class ReservationController implements DaoInterface
         } catch (\Exception $e) {
             echo $e->getMessage();
         }
+
+        try{
+            $id_book = $Reservation->getIdBook();
+            $sqlUpdateAvailableCopies = "UPDATE `book` SET `available_copies` = `available_copies` - 1 WHERE `id` = :id_book";
+            $statement = $this->database->prepare($sqlUpdateAvailableCopies);
+            $statement->bindParam(':id_book', $id_book);
+            $statement->execute();
+
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
+
     }
 
 
@@ -75,6 +86,21 @@ class ReservationController implements DaoInterface
         }catch (\Exception $e){
             echo $e->getMessage();
         }
+
+        try {
+
+            if ($Reservation->getIsReturned() === 'Yes') {
+                $id_book = $Reservation->getIdBook();
+                $sqlUpdateAvailableCopies = "UPDATE `book` SET `available_copies` = `available_copies` + 1 WHERE `id` = :id_book";
+                $statement = $this->database->prepare($sqlUpdateAvailableCopies);
+                $statement->bindParam(':id_book', $id_book);
+                $statement->execute();
+            }
+
+            return true;
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
     }
 
     public function findById($id)
@@ -94,10 +120,10 @@ class ReservationController implements DaoInterface
 
     public function getTheMostReservation(){
         try{
-            $sql = "SELECT b.title, COUNT(r.id) AS reservation_count FROM book b LEFT JOIN reservation r ON b.id = r.id_book GROUP BY b.title ORDER BY reservation_count DESC;";
+            $sql = "SELECT b.title AS bookname, COUNT(r.id) AS reservation_count FROM book b LEFT JOIN reservation r ON b.id = r.id_book GROUP BY b.title ORDER BY reservation_count DESC;";
             $stmt = $this->database->prepare($sql);
             $stmt->execute();
-            $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+            $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
             return $result;
         }catch(\PDOException $e){
             echo $e->getMessage();

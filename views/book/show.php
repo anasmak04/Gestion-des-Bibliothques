@@ -50,13 +50,20 @@ session_start();
         </div>
         <div class="nav-links">
             <a href="../book/show.php" target="_blank">Books</a>
+            <?php
+            if($_SESSION["role"] == 1){?>
             <a href="../reservation/show.php" target="_blank">Reservation</a>
+                <?php
+            }
+            ?>
+
             <?php
             if($_SESSION["role"] == 1){?>
             <a href="../admin/users/user.php" target="_blank">utilisateurs</a>
         <?php
             }
         ?>
+
         </div>
     </div>
     <table class="table" id="customers">

@@ -4,6 +4,8 @@ session_start();
 
 $book_id = isset($_GET['id']) ? $_GET['id'] : null;
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,7 +48,7 @@ $book_id = isset($_GET['id']) ? $_GET['id'] : null;
 <?php  } ?>
 
     <div class="form-group">
-        <input name="id_book"   value="<?php echo $book_id; ?>" type="hidden" class="form-control"  id="id_book" required>
+        <input name="id_book"  value="<?php echo $book_id; ?>" type="hidden" class="form-control"  id="id_book" required>
     </div>
 
 

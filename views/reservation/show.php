@@ -1,12 +1,9 @@
 <?php
 session_start();
 require_once "../../app/controllers/reservation/ReservationController.php";
-
 $reservationimp = new \App\reservation\ReservationController();
-
 $result = $reservationimp->findAll();
 $result2 = $reservationimp->getTheMostReservation();
-
 ?>
 
 
@@ -24,11 +21,12 @@ $result2 = $reservationimp->getTheMostReservation();
 <body>
 
 
-
 <div class="container">
     <h2>Reservation Management</h2>
     <a class="logout" href="../Logout.php">Logout</a>
     <input class="input" type="text" id="searchInput" placeholder="Search for reservations">
+
+
     <div class="nav">
         <input type="checkbox" id="nav-check">
         <div class="nav-header">
@@ -55,6 +53,32 @@ $result2 = $reservationimp->getTheMostReservation();
         </div>
 
     </div>
+
+    <table id="customers">
+        <p>the most reservation</p>
+        <thead>
+        <tr>
+            <th>book name</th>
+            <th>count of reservation</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php  foreach ($result2 as $reservation) : ?>
+            <tr>
+                <td><?= $reservation["bookname"] ?></td>
+                <td><?= $reservation["reservation_count"] ?></td>
+                <td>
+                    <?php if ($_SESSION["role"] == 1) { ?>
+                        <a class="logout" href="delete.php?id=<?= $reservation["id"] ?>">delete</a>
+                        <a class="logout" href="edit.php?id=<?= $reservation["id"] ?>">edit</a>
+                    <?php } ?>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+
+
     <table id="customers">
         <thead>
         <tr>
@@ -84,6 +108,7 @@ $result2 = $reservationimp->getTheMostReservation();
         <?php endforeach; ?>
         </tbody>
     </table>
+
 
 </div>
 <script>
